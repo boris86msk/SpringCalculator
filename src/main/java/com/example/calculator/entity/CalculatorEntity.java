@@ -9,14 +9,14 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @Entity
-@Table(name="calculator_table")
+@Table(name="calculator")
 @Data
 @ToString
 public class CalculatorEntity {
 
     @Id
-    @SequenceGenerator(name="calculator_tableSequence", sequenceName="calculator_table_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="calculator_tableSequence")
+    @SequenceGenerator(name="calculatorSequence", sequenceName="calculator_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="calculatorSequence")
     @Column(name = "id")
     private Long id;
 
@@ -27,7 +27,7 @@ public class CalculatorEntity {
     private String operator;
 
     @Column(name="last_value")
-    private String last_value;
+    private String lastValue;
 
     @Column(name="result_operation")
     private String result;
