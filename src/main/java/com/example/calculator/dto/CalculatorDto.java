@@ -1,10 +1,12 @@
 package com.example.calculator.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 public class CalculatorDto {
 
     private String firstValue;
@@ -12,4 +14,8 @@ public class CalculatorDto {
     private String operator;
 
     private String lastValue;
+
+    private LocalDate data;
+
+    private String result;
 }
