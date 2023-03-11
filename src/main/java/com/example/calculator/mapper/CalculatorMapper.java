@@ -9,6 +9,13 @@ import org.mapstruct.Mapping;
 public interface CalculatorMapper {
 
     @Mapping(target = "dataOperation", source = "data")
-    //@Mapping(target = "dataOperation", ignore = true) //игнор полей
     CalculatorEntity dtoToEntity(CalculatorDto calculatorDto);
+
+    @Mapping(target = "data", source = "dataOperation")
+    CalculatorDto entityToDto(CalculatorEntity calculatorEntity);
+
+
+    @Mapping(target = "data", ignore = true)
+    CalculatorDto entityToDtoNoData(CalculatorEntity calculatorEntity);
+
 }

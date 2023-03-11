@@ -3,15 +3,20 @@ package com.example.calculator.service;
 import com.example.calculator.base64encodedecode.Base64EncodeDecode;
 import com.example.calculator.dto.CalculatorDto;
 import com.example.calculator.entity.CalculatorEntity;
+import com.example.calculator.mapper.CalculatorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Service
 public class CalculatorService {
+
+    @Autowired
+    private CalculatorMapper calculatorMapper;
 
     @Autowired
     private Base64EncodeDecode base64EncodeDecode;
@@ -45,12 +50,14 @@ public class CalculatorService {
         return param;
     }
 
-    public List<CalculatorEntity> getMapping(List<CalculatorEntity> list) {
-        for (CalculatorEntity el : list) {
+    public List<CalculatorDto> getMapping(List<CalculatorEntity> inputList) {
+        List<CalculatorDto> outputList = new ArrayList<>();
+        for (CalculatorEntity el : inputList) {
             String decodeParam = base64EncodeDecode.getDecodeParam(el.getResult());
             el.setResult(decodeParam);
+            outputList.add(calculatorMapper.entityToDtoNoData(el));
         }
-        return list;
+        return outputList;
     }
 
 }

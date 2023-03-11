@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.example.calculator.calculatconst.Calc.CALCULATE;
+import static com.example.calculator.calculatconst.Calc.*;
 
 @RestController
 public class CalculatorController {
@@ -33,8 +33,8 @@ public class CalculatorController {
         return calculatorRepository.findAll();
     }
 
-    @GetMapping("/get_res")
-    public List<CalculatorEntity> getResult() {
+    @GetMapping(RESULT)
+    public List<CalculatorDto> getResult() {
         List<CalculatorEntity> all = calculatorRepository.findAll();
         return calculatorService.getMapping(all);
     }
@@ -44,7 +44,6 @@ public class CalculatorController {
     public HttpStatus calculate(@RequestBody CalculatorDto calculatorDto) {
         CalculatorDto calculate = calculatorService.calculate(calculatorDto);
         calculatorRepository.save(calculatorMapper.dtoToEntity(calculate));
-        //calculatorRepository.save(entityMapping.mapping(calculatorDto));
         return HttpStatus.OK;
     }
 
